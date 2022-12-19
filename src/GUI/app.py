@@ -36,21 +36,19 @@ class App(customtkinter.CTk):
         self.frames= []  # which is actually the current frame linked to the main container
         self.show_frame('LoginFrame') # show LoginFrame
         
+    
     # This is actually the method where the panes are switched on the container    
     def show_frame(self, name:str):
-
-        if name == 'LoginFrame':   
+        if name == 'LoginFrame':
+            F = LoginFrame(self.container, self)
             if len(self.frames) == 0:
-                F = LoginFrame(self.container, self)
                 self.frames.append(F)
-                print(self.frames)
             else:
                 self.frames[0].grid_forget()
                 self.frames.pop(0)
-                F = LoginFrame(self.container, self)
                 self.frames.append(F)
-                print(self.frames)
-
+             
+               
             F.grid(row=0,column=0,sticky='ns')
         elif name == 'RegisterFrame':
             self.frames[0].grid_forget()
@@ -58,9 +56,8 @@ class App(customtkinter.CTk):
             F = RegisterFrame(self.container, self)
             self.frames.append(F)
             F.grid(row=0,column=0)
-            print(self.frames)  
         
-        elif name == 'MainFrame':     
+        elif name == 'MainFrame':
             self.frames[0].grid_forget()
             self.frames.pop(0)
             F = MainFrame(self.container, self)

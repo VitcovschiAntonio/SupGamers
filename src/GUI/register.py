@@ -1,5 +1,7 @@
 import customtkinter
-
+import sys
+sys.path.insert(0,'C:/Users/Tons/Desktop/SupGamers/src/API')
+from api import SupGamersAPI
 
 class RegisterFrame(customtkinter.CTkFrame):
     def __init__(self,parent,controller, *args, **kwargs):
@@ -24,8 +26,26 @@ class RegisterFrame(customtkinter.CTkFrame):
         self.lastName_entry = customtkinter.CTkEntry(self, width=200, show="*", placeholder_text="last name")
         self.lastName_entry.grid(row=6, column=0, padx=30, pady=(0, 15))
 
-        self.create_button = customtkinter.CTkButton(self, text="Create",  width=200,fg_color='gray')
+        self.create_button = customtkinter.CTkButton(self, text="Create",  width=200,command = self.create 
+        ,fg_color='gray')
         self.create_button.grid(row=8, column=0, padx=30, pady=(5, 15))
 
         self.back_button = customtkinter.CTkButton(self, text="go back",command=lambda: controller.show_frame('LoginFrame') , width=200)
         self.back_button.grid(row=9, column=0, padx=30, pady=(5, 15))
+ 
+    def create(self):
+        username = self.username_entry.get()
+        password = self.password_entry.get()
+        email = self.email_entry.get()
+
+        api = SupGamersAPI()
+        if api.create_account(username,password,email):
+            print('User Details:\n')
+        else:
+            print('Gresit')
+    
+        
+        
+
+
+

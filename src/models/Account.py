@@ -2,11 +2,11 @@ from Password import Password
 
 
 class User:
-    def __init__(self, username: str, password: str, email :str):
+    def __init__(self, username: str, password: str):
         # USER CREDENTIAL INFORMATION
         self.username = username
         self.password = Password(password)
-        self.email = email
+        self.email = ''
         self.phonenumber = 0
         self.firstname= ''
         self.lastname = ''
@@ -43,30 +43,6 @@ class User:
 
 
 
-
-import mysql.connector
-
-
-mydb = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    passwd ='1234',
-    database = 'supgamers'
-)
-
-mycursor = mydb.cursor()
-u = User('add44','1234','test@yahoo.com')
-u1 = User('add2','1234','tes1@yahoo.com')
-
-query = '''
-
-SELECT EXISTS(SELECT * FROM users WHERE username = 'add22')
-'''
-
-mycursor.execute(query)
-
-for u in mycursor:
-    print(u)
 
 
 
